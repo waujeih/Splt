@@ -6,5 +6,5 @@ A mobile-first expense-splitting web app for friends, roommates, and travel grou
 
 ```bash
 npm install
-npm run dev
+npm run dev 
 # open http://localhost:3000
