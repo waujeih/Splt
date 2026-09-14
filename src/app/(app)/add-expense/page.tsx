@@ -54,15 +54,23 @@ export default function AddExpensePage() {
     } catch (e: any) { return { error: e.message as string }; }
   }, [group, amt, includedIds, split, values]);
 
-  const save = () => {
+    const save = () => {
     if (!group) return setError('Pick a group');
     if (!title.trim()) return setError('Enter a title');
     if (amt <= 0) return setError('Enter an amount');
     if (!shares || 'error' in shares) return setError(shares?.error ?? 'Invalid split');
-    if (!shares.every(s => s.userId === paidBy || includedIds.includes(s.userId))) return setError('Payer must be involved');
+    if (!shares.every(s => s.userId === paidBy || includedIds.includes(s.userId))) 
+      return setError('Payer must be involved');
+    
     store.addExpense({
-      groupId: group.id, title: title.trim(), amount: amt, paidBy, category, date,
-      split, shares,
+      groupId: group.id, 
+      title: title.trim(), 
+      amount: amt, 
+      paidBy, 
+      category, 
+      date,
+      split, 
+      shares,
     });
     router.push(`/groups/${group.id}`);
   };
