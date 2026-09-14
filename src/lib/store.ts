@@ -131,7 +131,8 @@ export const store = {
     return groupId ? all.filter(e => e.groupId === groupId) : all;
   },
   expense(id: string): Expense | undefined { return read<Expense[]>(K.expenses, []).find(e => e.id === id); },
-  addExpense(data: Omit<Expense, 'id' | 'createdAt'>): Expense {
+   addExpense(data: Omit<Expense, 'id' | 'createdAt' | 'createdBy'>):
+   Expense{
     const me = this.currentUser()!;
     const e: Expense = { ...data, id: uid(), createdBy: me.id, createdAt: Date.now() };
     write(K.expenses, [...read<Expense[]>(K.expenses, []), e]);
