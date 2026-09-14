@@ -146,7 +146,12 @@ export default function AddExpensePage() {
           <div className="space-y-1.5">
             {members.map(m => {
               const on = included[m.id];
-              const share = 'error' in (shares ?? {}) ? null : shares?.find(s => s.userId === m.id);
+              {members.map(m => {
+  const on = included[m.id];
+  const share = 'error' in (shares ?? {}) ? null : shares?.find(s => s.userId === m.id);
+  return (
+    <div key={m.id} className={clsx('flex items-center gap-2 p-2 rounded-xl border', on?'border-gray-200':'border-gray-100 opacity-50')}>
+      
               return (
                 <div key={m.id} className={clsx('flex items-center gap-2 p-2 rounded-xl border', on?'border-gray-200':'border-gray-100 opacity-50')}>
                   <button onClick={() => setIncluded(x => ({ ...x, [m.id]: !x[m.id] }))} className={clsx('w-5 h-5 rounded-md border-2 flex items-center justify-center', on?'bg-brand-600 border-brand-600':'border-gray-300')}>
